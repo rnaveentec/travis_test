@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Run Python Script') {
             steps { // <==  Add 'steps' block here
-                sh 'python test.py'
+                sh '/usr/bin/python3 test.py'
             }
         }
         stage('Hello') {
