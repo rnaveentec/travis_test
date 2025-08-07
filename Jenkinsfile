@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps { // <==  Add 'steps' block here
-                git url: 'https://github.com/rnaveentec/travis_test.git', branch: 'main'
+                git url: 'https://github.com/rnaveentec/travis_test.git', branch: 'master'
             }
         }
         stage('Run Python Script') {
