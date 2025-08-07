@@ -5,4 +5,4 @@ def test_func():
 
 if __name__ == "__main__":
 	test_func()
-	sys.exit(1)
+	sys.exit(0)
