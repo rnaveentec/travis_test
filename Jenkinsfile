@@ -4,7 +4,7 @@ pipeline {
         booleanParam(name: 'force_build', defaultValue: false, description: 'Force a build to run?')
     }
     triggers {
-        cron('* * * * *')
+        // cron('* * * * *')
     }
     stages {
         stage('Checkout') {
