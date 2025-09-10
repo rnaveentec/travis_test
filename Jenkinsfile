@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    parameters {
+        booleanParam(name: 'force_build', defaultValue: false, description: 'Force a build to run?')
+    }
     stages {
         stage('Checkout') {
             steps { // <==  Add 'steps' block here
