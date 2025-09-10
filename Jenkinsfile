@@ -3,6 +3,9 @@ pipeline {
     parameters {
         booleanParam(name: 'force_build', defaultValue: false, description: 'Force a build to run?')
     }
+    triggers {
+        cron('* * * * *')
+    }
     stages {
         stage('Checkout') {
             steps { // <==  Add 'steps' block here
