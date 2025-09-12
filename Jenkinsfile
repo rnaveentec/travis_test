@@ -10,6 +10,10 @@ pipeline {
     */
     stages {
         stage('Checkout') {
+            def causes = currentBuild.rawBuild.getCauses()
+            if (causes.any { it.toString().contains("TimerTriggerCause") }) {
+                echo 'Nightly build triggered'
+            }
             steps { // <==  Add 'steps' block here
                 git url: 'https://github.com/rnaveentec/travis_test.git', branch: 'master'
             }
