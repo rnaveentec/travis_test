@@ -14,9 +14,11 @@ pipeline {
             steps { // <==  Add 'steps' block here
                 git url: 'https://github.com/rnaveentec/travis_test.git', branch: 'master'
                 script {
-                    def causes = currentBuild.rawBuild.getCauses()
-                    if (causes.any { it.toString().contains("TimerTriggerCause") }) {
-                        echo "Nightly build triggered"
+                    def causes = currentBuild.getBuildCauses()
+                    if (causes.any { it._class =~ /TimerTriggerCause/ }) {
+                        echo "This is a nightly build (triggered by cron)."
+                    } else {
+                        echo "Triggered by: ${causes}"
                     }
                 }
             }
