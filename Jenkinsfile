@@ -33,6 +33,14 @@ pipeline {
                 echo 'Hello World'
             }
         }
+        stage('Nightly Only') {
+            when {
+                triggeredBy 'TimerTriggerCause'
+            }
+            steps {
+                echo "This is a nightly build (triggered by every minute cron)."
+            }
+        }
     }
     post {
         always {
