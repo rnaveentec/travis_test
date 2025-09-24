@@ -2,7 +2,9 @@
 BUILD_TYPE ?= none
 
 all:
-	@echo ">> Build type is: $(BUILD_TYPE)"
+	@echo ">> Build type: $(BUILD_TYPE)"
+	@echo ">> Build number: $(BUILD_NUM)"
+	@echo ">> Branch: $(BRANCH_NAME)"
 
 ifeq ($(BUILD_TYPE),nightly)
 	@echo "🌙 Running Nightly build steps"
