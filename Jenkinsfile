@@ -26,7 +26,10 @@ pipeline {
         stage('Run Python Script') {
             steps { // <==  Add 'steps' block here
                 // sh '/usr/bin/python3 test.py'
-                sh "make BUILD_TYPE=${params.BUILD_TYPE}"
+                def buildNum   = env.BUILD_NUMBER
+                def branchName = env.BRANCH_NAME ?: "unknown"
+                echo "🔨 Running build #${buildNum} on branch ${branchName}"
+                sh "make BUILD_TYPE=${params.BUILD_TYPE} BUILD_NUM=${buildNum} BRANCH_NAME=${branchName}"
             }
         }
         stage('Hello') {
