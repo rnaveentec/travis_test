@@ -25,7 +25,8 @@ pipeline {
         }
         stage('Run Python Script') {
             steps { // <==  Add 'steps' block here
-                sh '/usr/bin/python3 test.py'
+                // sh '/usr/bin/python3 test.py'
+                sh "make BUILD_TYPE=${params.BUILD_TYPE}"
             }
         }
         stage('Hello') {
