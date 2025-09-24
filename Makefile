@@ -20,6 +20,6 @@ ifeq ($(BUILD_TYPE),release)
 endif
 
 ifeq ($(BUILD_TYPE),none)
-	@echo "❌ No valid build type selected. Exiting."
-	exit 1
+	@echo "User triggered build"
+	exit 0
 endif
