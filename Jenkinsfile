@@ -28,7 +28,7 @@ pipeline {
                 script {
                     // define variables inside script block
                     def buildNum   = env.BUILD_NUMBER
-                    def branchName = env.BRANCH_NAME ?: "unknown"
+                    def branchName = env.BRANCH_NAME ?: env.GIT_BRANCH ?: "unknown"
                     // sh '/usr/bin/python3 test.py'
                     echo "🔨 Running build #${buildNum} on branch ${branchName}"
                     sh "make BUILD_TYPE=${params.BUILD_TYPE} BUILD_NUM=${buildNum} BRANCH_NAME=${branchName}"
