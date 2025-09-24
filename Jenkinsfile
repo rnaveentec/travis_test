@@ -8,10 +8,6 @@ pipeline {
         cron('* * * * *')
     }
     */
-    environment {
-        BUILD_NUM   = "${env.BUILD_NUMBER}"
-        BRANCH_NAME = "${env.BRANCH_NAME ?: 'unknown'}"
-    }
     stages {
         stage('Checkout') {
             
@@ -29,9 +25,14 @@ pipeline {
         }
         stage('Run Python Script') {
             steps { // <==  Add 'steps' block here
-                // sh '/usr/bin/python3 test.py'
-                echo "🔨 Running build #${buildNum} on branch ${branchName}"
-                sh "make BUILD_TYPE=${params.BUILD_TYPE} BUILD_NUM=${buildNum} BRANCH_NAME=${branchName}"
+                script {
+                    // define variables inside script block
+                    def buildNum   = env.BUILD_NUMBER
+                    def branchName = env.BRANCH_NAME ?: "unknown"
+                    // sh '/usr/bin/python3 test.py'
+                    echo "🔨 Running build #${buildNum} on branch ${branchName}"
+                    sh "make BUILD_TYPE=${params.BUILD_TYPE} BUILD_NUM=${buildNum} BRANCH_NAME=${branchName}"
+                }
             }
         }
         stage('Hello') {
